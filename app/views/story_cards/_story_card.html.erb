@@ -3,7 +3,8 @@
 </div>
 
 <div class="actions">
-  <%= link_to "reply", reply_story_card_path(story_card.id) %>
+  <%= link_to "reply", reply_story_card_path(story_card) %>
+  <%= link_to "Upvotes", upvote_story_card_path(story_card) %>
 </div>
 
 <div class="replies">

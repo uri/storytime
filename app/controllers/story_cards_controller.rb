@@ -34,5 +34,10 @@ class StoryCardsController < ApplicationController
     @story_card.parent_id = @parent.id
   end
 
+  def vote
+    value = params[:value]
+    story_card = StoryCard.find params[:id]
+  end
+
 
 end
