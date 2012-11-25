@@ -1,17 +1,11 @@
-
-<div class="story-card">
-  <div class="content">
-    <%= story_card.content %>
-  </div>
-
-
-  <div class="actions">
-    <%= link_to "reply", reply_story_card_path(story_card.id) %>
-  </div>
-
-  <div class="replies">
-    <%= render story_card.replies %>
-  </div>
-
+<div class="content">
+  <%= story_card.content %>
 </div>
 
+<div class="actions">
+  <%= link_to "reply", reply_story_card_path(story_card.id) %>
+</div>
+
+<div class="replies">
+  <%= render story_card.replies %>
+</div>

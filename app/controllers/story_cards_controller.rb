@@ -5,6 +5,7 @@ class StoryCardsController < ApplicationController
   end
 
   def show
+    @story_card = StoryCard.find params[:id]
   end
 
   def new

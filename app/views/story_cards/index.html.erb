@@ -1,4 +1,14 @@
-<h1>StoryCard#index</h1>
-<p>Find me in app/views/story_card/index.html.erb</p>
+<div class="row">
+  <div class="span12"><%= link_to "Tell me something", new_story_card_path, :class => %w(btn btn-large btn-success) %></div>
+</div>
 
-<%= render @story_cards %>
+<div class="row">
+  <% @story_cards.each do |story_card| %>
+    <div class="span2 story-card">
+      <div class="content">
+        <%= story_card.content%>
+      </div>
+      <%= link_to "Read on! (#{story_card.total_reply_count})", story_card_path(story_card) %>
+    </div>
+  <% end %>
+</div>

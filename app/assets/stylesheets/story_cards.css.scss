@@ -1,4 +1,16 @@
 
 .replies {
   padding-left:20px;
+  border-left: 2px solid;
+  border-color:#ccc;
+}
+
+.story-card {
+  padding:20px;
+  margin:10px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 2px solid;
+  border-color: #afb2b8;
 }

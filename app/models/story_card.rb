@@ -13,4 +13,17 @@ class StoryCard < ActiveRecord::Base
   def replies
     StoryCard.where("parent_id = ?", self.id)
   end
+
+  def total_reply_count
+    count = 0
+    children = [self.id]
+    while not children.empty?
+      current = StoryCard.find children.pop
+      count += 1
+      children += current.replies.map {|r| r.id}
+    end
+    count
+  end
+
+
 end
