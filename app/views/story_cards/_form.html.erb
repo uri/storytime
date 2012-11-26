@@ -1,5 +1,5 @@
 <%= simple_form_for @story_card do |f| %>
   <%= f.input :parent_id, :as => :hidden %>
-  <%= f.input :content, :as => :text %>
+  <%= f.input :content, :as => :text, :input_html => {rows:5} %>
   <%= f.submit %>
 <% end %>

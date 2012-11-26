@@ -10,13 +10,25 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new params[:user]
-    
-    if @user.save
-      session[:user_token] = @user.token
-      redirect_to root_path
-    else
-      render "new"
+    respond_to do |format|
+      puts params
+      @user = User.new params[:user]
+      
+      if @user.save
+        format.html do 
+          session[:user_token] = @user.token
+          redirect_to root_path
+        end
+
+        format.json
+        format.xml
+        
+      else
+        format.html { render "new" }
+        format.json { render :json => { :errors => @user.errors.full_messages.to_json} }
+        format.xml { render :xml => { :errors => @user.errors.full_messages.to_xml} }
+      end
+
     end
   end
 

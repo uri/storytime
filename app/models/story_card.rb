@@ -7,6 +7,8 @@ class StoryCard < ActiveRecord::Base
 
   validates :content, :length => {:maximum => 140}
 
+  before_save :clean_whitespace
+
   def self.main_threads
     StoryCard.select{|c| c.parent_id == nil}
   end
@@ -46,5 +48,9 @@ class StoryCard < ActiveRecord::Base
     Vote.where(:story_card_id => self.id, :value => -1).count
   end
 
+  private
+  def clean_whitespace
+    # self.content = self.content.tr("\n\r", "")
+  end
 
 end
