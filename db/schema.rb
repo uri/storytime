@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20121126023941) do
   end
 
   create_table "votes", :force => true do |t|
-    t.boolean  "value"
+    t.integer  "value"
     t.integer  "user_id"
     t.integer  "story_card_id"
     t.datetime "created_at",    :null => false
