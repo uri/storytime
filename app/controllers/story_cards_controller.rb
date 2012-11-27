@@ -11,6 +11,18 @@ class StoryCardsController < ApplicationController
     end
   end
 
+  def replies
+    @story_card = StoryCard.find params[:id]
+    @story_cards = @story_card.replies
+    respond_to do |format|
+      format.html 
+      format.json
+      format.xml
+
+      render "index" and return
+    end
+  end
+
   def show
     @story_card = StoryCard.find params[:id]
   end
