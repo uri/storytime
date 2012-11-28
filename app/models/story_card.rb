@@ -9,6 +9,8 @@ class StoryCard < ActiveRecord::Base
 
   before_save :clean_whitespace
 
+
+
   def self.main_threads
     StoryCard.select{|c| c.parent_id == nil}
   end
