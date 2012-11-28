@@ -12,11 +12,11 @@ class StoryCard < ActiveRecord::Base
 
 
   def self.main_threads
-    StoryCard.select{|c| c.parent_id == nil}
+    StoryCard.select{|c| c.parent_id == nil}.sort{|a,b| b.score <=> a.score}
   end
 
   def replies
-    StoryCard.where("parent_id = ?", self.id)
+    StoryCard.where("parent_id = ?", self.id).sort{|a,b| b.score <=> a.score}
   end
 
   def total_reply_count
@@ -48,6 +48,11 @@ class StoryCard < ActiveRecord::Base
 
   def downvotes_count
     Vote.where(:story_card_id => self.id, :value => -1).count
+  end
+
+  def score
+    # This is horrible
+    upvotes_count - downvotes_count
   end
 
   private
