@@ -5,6 +5,29 @@ class UsersController < ApplicationController
   def index
   end
 
+  def show
+    if params[:id].to_i == 0
+      @user = User.find_by_name params[:id]
+    else
+      @user = User.find
+    end
+
+    respond_to do |format|
+
+      if @user
+        format.html
+        format.json
+        format.xml
+      else
+        error = "That user does not exist"
+        format.json { render :json => {:error => error }}
+        format.xml { render :xml => {:error => error }}
+        format.html {redirect_to root_path, :notice => error }
+      end
+
+    end
+  end
+
   def new
     @user = User.new
   end

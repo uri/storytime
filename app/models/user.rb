@@ -16,6 +16,14 @@ class User < ActiveRecord::Base
     update_attribute(:token, token)
   end
 
+  def upvote_count
+    StoryCard.where(:user_id => self.id).inject(0) { |sum, card| sum += card.upvotes_count }
+  end
+
+  def downvote_count
+    StoryCard.where(:user_id => self.id).inject(0) { |sum, card| sum += card.downvotes_count }
+  end
+
   private 
 
   def generate_token

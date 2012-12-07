@@ -5,14 +5,15 @@ class StoryCard < ActiveRecord::Base
   belongs_to :story_card, :foreign_key => :parent_id
   belongs_to :user
 
-  validates :content, :length => {:maximum => 140}
+  validates :content, :length => {:maximum => 140}, :presence => true
 
   before_save :clean_whitespace
 
 
 
   def self.main_threads
-    StoryCard.select{|c| c.parent_id == nil}.sort{|a,b| b.score <=> a.score}
+    now = Time.now
+    StoryCard.select{|c| c.parent_id == nil}.sort_by{|card| [-card.score, now - card.created_at] }
   end
 
   def replies
