@@ -16,9 +16,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'libv8', '~> 3.11.8'
-gem 'less-rails'
-gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem 'rabl'
